@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio – Power BI Specialist</title>
   <style>
-    /* =============================================
-       GLOBAL RESET & VARIABLES
-    ============================================= */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -42,9 +39,6 @@
     a { color: var(--color-primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* =============================================
-       TOP NAVIGATION / TABS
-    ============================================= */
     header {
       background: var(--color-surface);
       border-bottom: 2px solid var(--color-border);
@@ -99,24 +93,14 @@
       color: #fff;
     }
 
-    /* =============================================
-       MAIN WRAPPER
-    ============================================= */
     main {
       max-width: 960px;
       margin: 0 auto;
       padding: 40px 24px 60px;
     }
 
-    /* =============================================
-       SECTION VISIBILITY
-    ============================================= */
     .section { display: none; }
     .section.active { display: block; }
-
-    /* =============================================
-       HOME SECTION
-    ============================================= */
 
     /* — Profile card — */
     .profile-card {
@@ -128,23 +112,6 @@
       align-items: flex-start;
       padding: 36px 40px;
       margin-bottom: 32px;
-    }
-
-    /* circular avatar / photo placeholder */
-    .avatar {
-      flex-shrink: 0;
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: var(--color-avatar-bg);
-      color: #fff;
-      font-size: 2.2rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      letter-spacing: 1px;
-      /* CUSTOMIZE: replace with <img src="your-photo.jpg"> inside .avatar if desired */
     }
 
     .profile-info { flex: 1; }
@@ -221,6 +188,7 @@
       background: var(--color-primary);
       color: #fff;
       border-color: var(--color-primary);
+      cursor: pointer;
     }
 
     /* — Contact — */
@@ -252,9 +220,6 @@
       flex-shrink: 0;
     }
 
-    /* =============================================
-       PROJECTS SECTION
-    ============================================= */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -385,9 +350,6 @@
       display: block;
     }
 
-    /* =============================================
-       FOOTER
-    ============================================= */
     footer {
       text-align: center;
       padding: 24px;
@@ -396,10 +358,6 @@
       border-top: 1px solid var(--color-border);
       margin-top: 40px;
     }
-
-    /* =============================================
-       RESPONSIVE MEDIA QUERIES
-    ============================================= */
 
     /* — Tablets (≤ 768px) — */
     @media (max-width: 768px) {
@@ -455,13 +413,10 @@
 </head>
 <body>
 
-<!-- ============================================================
-     HEADER / NAVIGATION
-============================================================ -->
 <header>
   <div class="nav-inner">
     <!-- CUSTOMIZE: Update the logo/brand text below -->
-    <span class="nav-logo">My Portfolio</span>
+    <span class="nav-logo">RR</span>
     <nav class="nav-tabs" role="tablist">
       <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="home">Home</button>
       <button class="tab-btn"        role="tab" aria-selected="false" data-tab="projects">Projects</button>
@@ -469,31 +424,17 @@
   </div>
 </header>
 
-<!-- ============================================================
-     MAIN CONTENT
-============================================================ -->
 <main>
 
-  <!-- ======================================================
-       HOME SECTION
-  ====================================================== -->
   <section id="home" class="section active" role="tabpanel">
 
     <!-- Profile card -->
     <div class="profile-card">
-      <!--
-        CUSTOMIZE: Avatar initials.
-        Or replace the entire <div class="avatar"> with:
-          <img class="avatar" src="your-photo.jpg" alt="Your Name" style="object-fit:cover;">
-      -->
-      <div class="avatar" aria-label="Avatar">RR</div>
+      
 
       <div class="profile-info">
-        <!-- CUSTOMIZE: Your full name -->
         <h1 class="profile-name">Róger Retana Mc Nally</h1>
-        <!-- CUSTOMIZE: Your professional title -->
         <p class="profile-title">Software Developer &amp; Entry Data Analyst </p>
-        <!-- CUSTOMIZE: Short professional bio -->
         <p class="profile-bio">
           Results-driven professional with a background in software development and a strong ability to solve problems and 
           collaborate across teams. Known for clear communication, attention to detail, and a proactive attitude. Open to roles 
@@ -502,14 +443,9 @@
       </div>
     </div>
 
-    <!-- Technical skills -->
     <div class="card">
       <h2 class="card-title">Technical Skills</h2>
       <div class="skills-grid">
-        <!--
-          CUSTOMIZE: Add, remove, or rename skill badges below.
-          Each badge is simply a <span> element.
-        -->
         <span class="skill-badge">Power BI</span>
         <span class="skill-badge">SQL</span>
         <span class="skill-badge">Data Modeling</span>
@@ -518,11 +454,9 @@
       </div>
     </div>
 
-    <!-- Contact information -->
     <div class="card">
       <h2 class="card-title">Contact</h2>
       <ul class="contact-list">
-        <!-- CUSTOMIZE: Replace placeholder email and LinkedIn URL -->
         <li>
           <span class="contact-icon" aria-hidden="true">✉</span>
           <a href="mailto:rogerrmcn@gmail.com">rogerrmcn@gmail.com</a>
@@ -534,7 +468,6 @@
           </a>
         </li>
         <li>
-          <!-- CUSTOMIZE: Add or remove extra contact items as needed -->
           <span class="contact-icon" aria-hidden="true">📍</span>
           <span>San José, Costa Rica</span>
         </li>
@@ -543,12 +476,8 @@
 
   </section><!-- /#home -->
 
-  <!-- ======================================================
-       PROJECTS SECTION
-  ====================================================== -->
   <section id="projects" class="section" role="tabpanel">
 
-    <!-- Project cards rendered by JS from the projects array below -->
     <div class="projects-grid" id="projectsGrid"></div>
 
   </section><!-- /#projects -->
@@ -556,19 +485,11 @@
 </main>
 
 <footer>
-  <!-- CUSTOMIZE: Footer text -->
+ 
   &copy; <span id="year"></span> Róger Retana Mc Nally · Portfolio
 </footer>
 
-<!-- ============================================================
-     JAVASCRIPT
-============================================================ -->
 <script>
-  /* ============================================================
-     PROJECT DATA
-     CUSTOMIZE: Edit the array below with your own projects.
-     Each object must have: id, title, description, iframeUrl
-  ============================================================ */
   const projects = [
     {
       id: 1,
@@ -578,51 +499,29 @@
     }
   ];
 
-   /* ============================================================
-     DETECT MOBILE DEVICE
-     Returns true if the device is mobile (phone or tablet in portrait)
-  ============================================================ */
+   
   function isMobileDevice() {
-    // Check screen width (768px is common breakpoint for mobile/tablet)
     const isMobileWidth = window.innerWidth <= 768;
     
-    // Check user agent for mobile devices (optional, but adds reliability)
     const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
     const isMobileUA = mobileRegex.test(navigator.userAgent);
-    
-    // Check orientation (portrait mode is typical for mobile viewing)
     const isPortrait = window.innerHeight > window.innerWidth;
-    
-    // Return true if either width is mobile OR user agent is mobile
-    // This ensures tablets in portrait mode also get mobile layout
     return isMobileWidth || isMobileUA;
   }
 
-  /* ============================================================
-     GET OPTIMIZED URL FOR DEVICE
-     Adds &mobile=true parameter for mobile devices
-  ============================================================ */
   function getOptimizedUrl(baseUrl) {
     if (isMobileDevice()) {
-      // Check if URL already has parameters
       const separator = baseUrl.includes('?') ? '&' : '?';
-      // Add mobile=true parameter to force mobile layout in Power BI
       return baseUrl + separator + 'mobile=true';
     }
     return baseUrl;
   }
 
-  /* ============================================================
-     OPEN REPORT IN NEW TAB WITH OPTIMIZED URL
-  ============================================================ */
   function openReport(project) {
     const optimizedUrl = getOptimizedUrl(project.iframeUrl);
     window.open(optimizedUrl, '_blank', 'noopener,noreferrer');
   }
 
-  /* ============================================================
-     TAB SWITCHING
-  ============================================================ */
   const tabBtns = document.querySelectorAll('.tab-btn');
   const sections = document.querySelectorAll('.section');
 
@@ -641,9 +540,6 @@
     });
   });
 
-  /* ============================================================
-     RENDER PROJECT CARDS
-  ============================================================ */
   const grid = document.getElementById('projectsGrid');
 
   projects.forEach((project, index) => {
@@ -663,7 +559,6 @@
     });
 
     card.addEventListener('click', (e) => {
-      // Prevent opening twice if clicking the button (since button already opens)
       if (e.target !== card.querySelector('.btn-view')) {
         openReport(project);
       }
@@ -672,10 +567,6 @@
     grid.appendChild(card);
   });
 
-
-  /* ============================================================
-     FOOTER YEAR
-  ============================================================ */
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
