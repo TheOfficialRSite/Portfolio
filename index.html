@@ -578,6 +578,48 @@
     }
   ];
 
+   /* ============================================================
+     DETECT MOBILE DEVICE
+     Returns true if the device is mobile (phone or tablet in portrait)
+  ============================================================ */
+  function isMobileDevice() {
+    // Check screen width (768px is common breakpoint for mobile/tablet)
+    const isMobileWidth = window.innerWidth <= 768;
+    
+    // Check user agent for mobile devices (optional, but adds reliability)
+    const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    const isMobileUA = mobileRegex.test(navigator.userAgent);
+    
+    // Check orientation (portrait mode is typical for mobile viewing)
+    const isPortrait = window.innerHeight > window.innerWidth;
+    
+    // Return true if either width is mobile OR user agent is mobile
+    // This ensures tablets in portrait mode also get mobile layout
+    return isMobileWidth || isMobileUA;
+  }
+
+  /* ============================================================
+     GET OPTIMIZED URL FOR DEVICE
+     Adds &mobile=true parameter for mobile devices
+  ============================================================ */
+  function getOptimizedUrl(baseUrl) {
+    if (isMobileDevice()) {
+      // Check if URL already has parameters
+      const separator = baseUrl.includes('?') ? '&' : '?';
+      // Add mobile=true parameter to force mobile layout in Power BI
+      return baseUrl + separator + 'mobile=true';
+    }
+    return baseUrl;
+  }
+
+  /* ============================================================
+     OPEN REPORT IN NEW TAB WITH OPTIMIZED URL
+  ============================================================ */
+  function openReport(project) {
+    const optimizedUrl = getOptimizedUrl(project.iframeUrl);
+    window.open(optimizedUrl, '_blank', 'noopener,noreferrer');
+  }
+
   /* ============================================================
      TAB SWITCHING
   ============================================================ */
@@ -617,50 +659,19 @@
 
     card.querySelector('.btn-view').addEventListener('click', (e) => {
       e.stopPropagation();
-      window.open(project.iframeUrl, '_blank', 'noopener,noreferrer');
+      openReport(project);
     });
 
     card.addEventListener('click', (e) => {
       // Prevent opening twice if clicking the button (since button already opens)
       if (e.target !== card.querySelector('.btn-view')) {
-        window.open(project.iframeUrl, '_blank', 'noopener,noreferrer');
+        openReport(project);
       }
     });
 
     grid.appendChild(card);
   });
 
-
-  /* ============================================================
-     LOAD REPORT INTO IFRAME
-  ============================================================ */
-  function loadReport(project, clickedCard) {
-    // Highlight selected card
-    document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
-    clickedCard.classList.add('selected');
-
-    // Update header
-    const header = document.getElementById('reportHeader');
-    const title  = document.getElementById('reportTitle');
-    header.style.display = 'flex';
-    title.textContent = project.title;
-
-    // Hide placeholder, show iframe wrapper
-    document.getElementById('reportPlaceholder').style.display = 'none';
-    const wrapper = document.getElementById('iframeWrapper');
-    wrapper.style.display = 'block';
-
-    // Update iframe src (only if changed to avoid reload)
-    const iframe = document.getElementById('reportIframe');
-    if (iframe.src !== project.iframeUrl) {
-      iframe.src = project.iframeUrl;
-    }
-
-    // Smooth scroll to viewer on mobile
-    if (window.innerWidth <= 768) {
-      document.getElementById('reportViewer').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
 
   /* ============================================================
      FOOTER YEAR
